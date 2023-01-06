@@ -1,13 +1,12 @@
 const express = require('express')
 const router = express.Router()
 
+// Controllers
+const shopC = require('../controllers/shop')
 
 
-
-
-router.get('/', (req, res, next) => {
-    res.render('index')
-})
+// Routes
+router.get('/', shopC.getHomePage)
 
 
 
