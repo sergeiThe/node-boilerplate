@@ -1,6 +1,10 @@
 class Shop {
     getHomePage(req, res, next) {
-        res.render('index')
+        res.render('index', {
+            pageTitle: 'Home page',
+            path: '/', 
+            // products: products
+        })
     }
 }
 

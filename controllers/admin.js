@@ -2,10 +2,17 @@ const Product = require('../models/product')
 
 class Admin {
     getAdminPage(req, res, next) {
-        res.render('admin', {
-            pageTitle: 'Admin page',
-            path: '/admin'
+
+        Product.find().then(products => {
+            console.log(products)
+            res.render('admin', {
+                pageTitle: 'Admin page',
+                path: '/admin', 
+                products: products
+            })
         })
+
+       
     }
 
     postAddProduct(req, res, next) {
@@ -24,11 +31,13 @@ class Admin {
         // Save product to db
         product.save().then(result => {
             console.log('Success!')
-            return res.json(product)
+            return res.json(product) // Change to redirect for example
         }).catch(err => {
-            res.send(err)
+            return res.send(err)
         })
     }
+
+    
     
 }
 

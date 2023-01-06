@@ -27,6 +27,8 @@ app.use(fileUpload({})) // Form-data enable
 app.use('/', home)
 app.use('/admin', admin)
 
+
+// Connect
 mongoose.connect(DB_URI).then(res => {
     app.listen(PORT, () => {console.log(`Server running on port ${PORT}`)});
 }).catch(err => {
