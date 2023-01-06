@@ -1,4 +1,5 @@
 const express = require('express')
+const fileUpload = require('express-fileupload')
 const dotenv = require('dotenv')
 dotenv.config()
 const mongoose = require('mongoose')
@@ -20,6 +21,7 @@ app.set('views', 'views')
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+app.use(fileUpload({})) // Form-data enable
 
 // Routes
 app.use('/', home)
