@@ -5,6 +5,7 @@ dotenv.config()
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const MongoDBSession = require('connect-mongodb-session')(session)
 
 
 // Route imports
@@ -18,6 +19,10 @@ const SESSION_SECRET = process.env.SESSION_SECRET
 const DB_URI = process.env.MONGO_URI
 
 const app = express()
+const store = new MongoDBSession({
+    uri: DB_URI,
+    collection: 'sessions'
+})
 
 // Middlewares
 app.set('view engine', 'ejs')
@@ -27,7 +32,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false})) // HTML form
 app.use(fileUpload({})) // Form-data enable
 app.use(cookieParser())
-app.use(session({secret: SESSION_SECRET, resave: false, saveUninitialized: false}))
+app.use(session({secret: SESSION_SECRET, resave: false, saveUninitialized: false, store: store}))
 
 // Routes
 app.use('/admin', admin)

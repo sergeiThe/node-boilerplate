@@ -1,6 +1,7 @@
 class Auth {
     getLogin(req, res, next) {
         const isLoggedIn = req.cookies.isLoggedIn
+        console.log(req.session.isLoggedIn)
         res.render('login', {
             pageTitle: 'Login',
             path: '/login', 
@@ -10,7 +11,8 @@ class Auth {
 
     postLogin(req, res, next) {
         res.setHeader('Set-Cookie', 'isLoggedIn=true')
-        res.redirect('/')
+        req.session.isLoggedIn = true;
+        res.redirect('/login')
     }
 }
 
