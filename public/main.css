@@ -16,6 +16,9 @@ a {
 
 .nav {
     background-color: rgb(0, 53, 0);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
 }
 
 .nav__list {
@@ -33,4 +36,20 @@ a {
 
 .active {
     color: yellow;
+}
+
+/* FORM */
+
+.form {
+    background-color: darkgreen;
+    padding: 30px;
+    width: 500px;
+}
+
+.form label {
+    color: white;
+    font-weight: bold;
+}
+.form input {
+    width: 100%;
 }

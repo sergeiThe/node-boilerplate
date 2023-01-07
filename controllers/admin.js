@@ -5,10 +5,12 @@ class Admin {
 
         Product.find().then(products => {
             console.log(products)
+            const isLoggedIn = req.cookies.isLoggedIn
             res.render('admin', {
                 pageTitle: 'Admin page',
                 path: '/admin', 
-                products: products
+                products: products,
+                isAuth: isLoggedIn
             })
         })
 
