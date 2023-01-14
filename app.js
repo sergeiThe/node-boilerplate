@@ -3,7 +3,7 @@ const fileUpload = require('express-fileupload')
 const dotenv = require('dotenv')
 dotenv.config()
 const mongoose = require('mongoose')
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser') // req.cookies
 const session = require('express-session')
 const MongoDBSession = require('connect-mongodb-session')(session)
 
@@ -27,9 +27,10 @@ const store = new MongoDBSession({
 // Middlewares
 app.set('view engine', 'ejs')
 app.set('views', 'views')
+
 app.use(express.static('public'))
-app.use(express.json())
 app.use(express.urlencoded({extended: false})) // HTML form
+app.use(express.json())
 app.use(fileUpload({})) // Form-data enable
 app.use(cookieParser())
 app.use(session({secret: SESSION_SECRET, resave: false, saveUninitialized: false, store: store}))

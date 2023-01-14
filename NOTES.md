@@ -4,3 +4,9 @@
 2. Initialize session storage when starting server. Sessions will then be used on every request
 3. req.session is added my the session middleware
 4. sessions should be stored in a database instead of memory due to potential overflow in case of many users
+
+
+- cookie-parser - middleware
+- express-session - {secret, resave, saveUninitialized, store = mongodbsession}
+- connect-mongodb-session(session) - store session in mongodb database
+- session_secret: long string
